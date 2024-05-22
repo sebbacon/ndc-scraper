@@ -32,5 +32,9 @@ jobs:
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
         git add package.txt product.txt
-        git commit -m 'Fetch and unzip ndctext.zip'
-        git push
+        if git diff --cached --exit-code; then
+          echo "No changes to commit."
+        else
+          git commit -m 'Fetch and unzip ndctext.zip'
+          git push
+        fi
